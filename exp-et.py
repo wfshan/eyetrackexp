@@ -527,12 +527,14 @@ class main_page(wx.Frame):
         
         
     def entermag(self,event):
-        self.tentermag = time.time()
-        self.magtimebegin = time.time()
+#        self.tentermag = time.time()
+#        self.magtimebegin = time.time()
         self.entermagtri = 1
-        f = open('eyedata\entermagtime%s_%s_%s.csv'%(self.cho,self.id,self.name),'a')#record time stamp of every entermag event
-        f.write(str('%s,'%self.tentermag))
-        f.close()
+        with open('eyedata\entermagtime%s_%s_%s.csv'%(self.cho,self.id,self.name),'a') as f:f.write(str('%s,' %time.time())        
+        
+#        f = open('eyedata\entermagtime%s_%s_%s.csv'%(self.cho,self.id,self.name),'a')#record time stamp of every entermag event
+#        f.write(str('%s,'%self.tentermag))
+#        f.close()
 
     def leavemag(self,event):
         self.tleavemag = time.time()
@@ -604,9 +606,10 @@ class main_page(wx.Frame):
             pass
         else:
             self.magtimeend = time.time()
-            f = open('eyedata\entermagtime%s_%s_%s.csv'%(self.cho,self.id,self.name),'a')#record time stamp of every entermag event
-            f.write(str('%s,' %self.magtimeend))
-            f.close()
+            with open('eyedata\entermagtime%s_%s_%s.csv'%(self.cho,self.id,self.name),'a') as f:f.write(str('%s,' %time.time()))
+#            f = open('eyedata\entermagtime%s_%s_%s.csv'%(self.cho,self.id,self.name),'a')#record time stamp of every entermag event
+#            f.write(str('%s,' %self.magtimeend))
+#            f.close()
             a = self.magtimeend - self.magtimebegin
             if a > 0.9 and self.magtimebegin > 0:
                 self.magtime.append(a)
